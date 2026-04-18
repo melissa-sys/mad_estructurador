@@ -21,6 +21,7 @@ Repositorio con el desarrollo completo de la prueba técnica. Contiene extracci�
 │   ├── CEMARGOS/
 │   ├── ECOPETROL/
 │   └── GRUPO NUTRESA/
+├── parte_2_MMV.docx                           # Parte 2 de la prueba técnica (desarrollo escrito)
 ├── requirements.txt
 └── README.md
 ```
@@ -62,6 +63,12 @@ Para Cementos Argos se calculan métricas históricas vinculadas a la probabilid
 - **Solvencia estructural:** Patrimonio/Activo total
 
 Los resultados se comparan explícitamente contra la PD del Punto 1.
+
+---
+
+### Parte 2 — `parte_2_MMV.docx`
+
+Documento con el desarrollo escrito de la segunda parte de la prueba técnica. Contiene el análisis, conclusiones y respuestas a las preguntas teóricas y metodológicas complementarias al ejercicio cuantitativo de la Parte 1.
 
 ---
 
