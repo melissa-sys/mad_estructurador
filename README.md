@@ -8,13 +8,17 @@ Repositorio con el desarrollo completo de la prueba técnica. Contiene extracci�
 
 ```
 ├── parte_1/
-│   ├── KMV_Punto1_Extraccion_Pasivos.ipynb   # Notebook principal
-│   ├── app.py                                 # Dashboard Streamlit interactivo
-│   ├── eeff_kmv_completo.csv                  # EEFF extraídos de XBRL (5 emisores)
-│   ├── kmv_resultados.csv                     # PD, DD y parámetros KMV por emisor/trimestre
-│   ├── punto2_ecopetrol_analisis.csv          # Métricas EEFF vs PD (Ecopetrol)
-│   ├── rating_ecopetrol_historico.csv         # Calificaciones crediticias históricas Ecopetrol
-│   └── speech_video_kmv.txt                   # Guión del video de presentación
+│   ├── KMV_Punto1_Extraccion_Pasivos.ipynb        # Notebook principal
+│   ├── app.py                                      # Dashboard Streamlit interactivo
+│   ├── eeff_kmv_completo.csv                       # EEFF extraídos de XBRL (5 emisores)
+│   ├── kmv_resultados.csv                          # PD, DD y parámetros KMV por emisor/trimestre
+│   ├── precios_kmv.csv                             # Precios históricos de mercado (Yahoo Finance)
+│   ├── punto2_ecopetrol_analisis.csv               # Métricas EEFF vs PD (Ecopetrol)
+│   ├── punto2_ecopetrol_correlaciones_pd.csv       # Correlaciones entre métricas y PD
+│   ├── rating_ecopetrol_historico.csv              # Calificaciones crediticias históricas Ecopetrol
+│   ├── figura1_kmv_pd.png                          # Figura 1 — PD histórica 5 emisores
+│   ├── figura2_ecopetrol_pd_rating.png             # Figura 2 — PD vs calificación de crédito
+│   └── figura3_ecopetrol_metricas_pd.png           # Figura 3 — Métricas EEFF vs PD
 ├── EEFF/                                      # Archivos XBRL por emisor (fuente: RNVE)
 │   ├── BANCOBOGOTA/
 │   ├── BANCOLOMBIA/
