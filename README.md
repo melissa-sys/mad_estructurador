@@ -9,12 +9,12 @@ Repositorio con el desarrollo completo de la prueba técnica. Contiene extracci�
 ```
 ├── parte_1/
 │   ├── KMV_Punto1_Extraccion_Pasivos.ipynb   # Notebook principal
+│   ├── app.py                                 # Dashboard Streamlit interactivo
 │   ├── eeff_kmv_completo.csv                  # EEFF extraídos de XBRL (5 emisores)
 │   ├── kmv_resultados.csv                     # PD, DD y parámetros KMV por emisor/trimestre
-│   ├── figura1_kmv_pd.png                     # Figura 1 — PD histórica 5 emisores
-│   ├── figura2_cemargos_pd_rating.png         # Figura 2 — PD vs calificación de crédito
-│   ├── figura3_cemargos_metricas_pd.png       # Figura 3 — Métricas EEFF vs PD
-│   └── rating_cemargos_historico.csv          # Plantilla de calificaciones crediticias
+│   ├── punto2_ecopetrol_analisis.csv          # Métricas EEFF vs PD (Ecopetrol)
+│   ├── rating_ecopetrol_historico.csv         # Calificaciones crediticias históricas Ecopetrol
+│   └── speech_video_kmv.txt                   # Guión del video de presentación
 ├── EEFF/                                      # Archivos XBRL por emisor (fuente: RNVE)
 │   ├── BANCOBOGOTA/
 │   ├── BANCOLOMBIA/
@@ -22,6 +22,7 @@ Repositorio con el desarrollo completo de la prueba técnica. Contiene extracci�
 │   ├── ECOPETROL/
 │   └── GRUPO NUTRESA/
 ├── parte_2_MMV.docx                           # Parte 2 de la prueba técnica (desarrollo escrito)
+├── presentacion.mp4                           # Video de presentación del análisis
 ├── requirements.txt
 └── README.md
 ```
@@ -50,17 +51,18 @@ El modelo calcula, para cada corte trimestral (2017–2022):
 - Precios de mercado: Yahoo Finance vía `yfinance` (tickers BVC + ADR donde aplica)
 - TRM histórica: Banco de la República (API de datos abiertos)
 
-**Literal b — PD vs calificación de crédito (Emisor: Cementos Argos)**
+**Literal b — PD vs calificación de crédito (Emisor: Ecopetrol)**
 
-Se compara la evolución de la PD calculada con la calificación crediticia histórica del emisor. La plantilla de calificaciones (`rating_cemargos_historico.csv`) debe diligenciarse con la información de la agencia calificadora elegida (Fitch, BRC–S&P, etc.) para completar la Figura 2.
+Se compara la evolución de la PD calculada con la calificación crediticia histórica de Ecopetrol (Fitch Ratings Colombia, largo plazo). Las calificaciones están en `rating_ecopetrol_historico.csv`.
 
 ### Punto 2 — Análisis de métricas financieras
 
-Para Cementos Argos se calculan métricas históricas vinculadas a la probabilidad de incumplimiento:
+Para Ecopetrol se calculan métricas históricas vinculadas a la probabilidad de incumplimiento:
 
-- **Endeudamiento:** Pasivo/Patrimonio, Pasivo/Activo total
-- **Rentabilidad:** ROA, ROE
-- **Solvencia estructural:** Patrimonio/Activo total
+- **Apalancamiento:** Deuda Neta / EBITDA
+- **Cobertura:** EBIT / Costos financieros
+- **Márgenes:** Margen EBITDA, Margen Neto
+- **Liquidez:** Razón Corriente, Caja / Activos totales
 
 Los resultados se comparan explícitamente contra la PD del Punto 1.
 
@@ -73,6 +75,10 @@ Documento con el desarrollo escrito de la segunda parte de la prueba técnica. C
 ---
 
 ## Reproducción
+
+> ⚠️ **Requisito de ruta:** Clona o copia el proyecto en una ruta **sin espacios ni caracteres especiales**.
+> Rutas como `C:\Users\Mi Usuario\Mis Documentos\` causan errores en el parser XBRL (Arelle) y en la resolución de rutas relativas.
+> Usa algo como `C:\proyectos\kmv_colombia\` o `C:\Users\nombre\kmv_colombia\`.
 
 ### 1. Clonar el repositorio
 
@@ -105,13 +111,29 @@ Abrir `parte_1/KMV_Punto1_Extraccion_Pasivos.ipynb` en Jupyter o VS Code y ejecu
 
 > ⚠️ La extracción de XBRL tarda ~10 minutos dependiendo del equipo. El notebook guarda los resultados intermedios en CSV para evitar reprocesar.
 
+### 5. Lanzar el dashboard interactivo
+
+```bash
+cd parte_1
+streamlit run app.py
+```
+
+El dashboard abre automáticamente en `http://localhost:8501` y contiene cuatro páginas:
+
+| Página | Contenido |
+|---|---|
+| Contexto & Modelo | Pipeline metodológico y KPIs globales |
+| Punto 1 — Evolución PD | Figura 1 interactiva con filtros por emisor y fecha |
+| Literal b — PD vs Rating | Figura 2 dual-eje: PD trimestral vs calificación Fitch |
+| Punto 2 — EEFF vs PD | Figura 3 + paneles de métricas financieras de Ecopetrol |
+
 ---
 
 ## Video de presentación
 
-> 🎥 **[Enlace al video — pendiente de publicación]**
+> 🎥 **`presentacion.mp4`** — incluido en la raíz del repositorio.
 >
-> El video explica la metodología implementada, los resultados obtenidos y las conclusiones del análisis comparativo entre la probabilidad de incumplimiento (KMV) y las métricas financieras del emisor seleccionado.
+> El video recorre en ~7 minutos la metodología implementada, los resultados obtenidos y las conclusiones del análisis comparativo entre la probabilidad de incumplimiento (KMV) y las métricas financieras del emisor seleccionado. La presentación se apoya en el dashboard Streamlit (`app.py`) como soporte visual.
 
 ---
 
